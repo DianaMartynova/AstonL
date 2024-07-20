@@ -3,6 +3,9 @@ package org.example.impl;
 
 import org.example.LinkList;
 
+import java.util.Comparator;
+import java.util.Iterator;
+
 /**
  * MyLinkedList - реализация пользовательского списка на основе двусвязного списка.
  * Этот класс предоставляет методы для добавления, получения, удаления элементов, очистки.
@@ -127,6 +130,46 @@ public class MyLinkedList<E> implements LinkList<E> {
         lastNode = null;
 
     }
+
+    @Override
+    public Iterator<E> iterator() {
+        return null;
+    }
+    /**
+     * Сортирует элементы списка методом вставки
+     */
+    @Override
+    public void sort() {
+        if (size > 1) {
+            for (Node<E> current = firstNode.nextElement; current != null; current = current.nextElement) {
+                E key = current.currentElement;
+                Node<E> previous = current.prevElement;
+                while (previous != null && comparator().compare(previous.currentElement, key) > 0) {
+                    previous.nextElement.currentElement = previous.currentElement;
+                    previous = previous.prevElement;
+                }
+                if (previous == null) {
+                    firstNode.currentElement = key;
+                } else {
+                    previous.nextElement.currentElement = key;
+                }
+            }
+        }
+    }
+    /**
+     * Возвращает компаратор для сравнения элементов
+     *
+     * @return компаратор для сравнения элементов
+     */
+    private Comparator<E> comparator() {
+        return (o1, o2) -> {
+            if (o1 == null && o2 == null) return 0;
+            if (o1 == null) return 1;
+            if (o2 == null) return -1;
+            return ((Comparable<E>) o1).compareTo(o2);
+        };
+    }
+
     /**
      * Внутренний класс, представляющий узел двусвязного списка.
      *

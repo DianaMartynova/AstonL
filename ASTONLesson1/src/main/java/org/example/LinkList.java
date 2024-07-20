@@ -6,13 +6,14 @@ package org.example;
  *
  * @param <E> тип элементов в этом списке
  */
-public interface LinkList<E> {
-/**
- * Добавляет элемент в начало или конец списка.
- *
- * @param e элемент для добавления в список
- **/
+public interface LinkList<E> extends Iterable<E> {
+    /**
+     * Добавляет элемент в начало или конец списка.
+     *
+     * @param e элемент для добавления в список
+     **/
     void add(E e);
+
     /**
      * Удаляет по индексу элемент.
      *
@@ -21,6 +22,8 @@ public interface LinkList<E> {
 
     void delete(int index);
 
+    void sort();
+
     /**
      * Удаляет весь список
      */
@@ -28,6 +31,7 @@ public interface LinkList<E> {
 
     /**
      * Получает элемент по индексу
+     *
      * @param index - индекс
      * @return вернет элемент
      */
@@ -35,7 +39,6 @@ public interface LinkList<E> {
     E getElementByIndex(int index);
 
     /**
-     *
      * @return Вернет размер списка
      */
     int size();
