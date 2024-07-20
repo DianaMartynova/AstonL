@@ -1,7 +1,10 @@
 package org.example;
+
+import java.util.Comparator;
+
 /**
  * ArList -.
- * Интерфейс предоставляет методы для добавления, получения, удаления элементов, очистки и .
+ * Интерфейс предоставляет методы для добавления, получения, удаления элементов, очистки и
  *Интерфейс ArList<E> наследуется от Iterable
  * @param <E> тип элементов в этом списке
  */
@@ -12,6 +15,11 @@ public interface ArList<E> extends Iterable<E> {
      * @return Возвращает true если элемент добавлен и false если нет
      */
     boolean add(E e);
+    /**
+     *
+     * @return Вернет размер списка
+     */
+    int size();
 
     /**
      * Достает по индексу элемент
@@ -19,6 +27,11 @@ public interface ArList<E> extends Iterable<E> {
      * @return возвращает элемент
      */
     E get(int index);
+
+    /**
+     * Сортирует список
+     */
+    void sort();
 
     /**
      * Добавление по индексу
@@ -33,6 +46,7 @@ public interface ArList<E> extends Iterable<E> {
      */
 
     void delete(int index);
+
 
     /**
      * Удаляет всю коллекцию
